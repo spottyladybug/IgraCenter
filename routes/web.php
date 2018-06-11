@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// OAuth Routes
+Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
+Route::get('login/vkontakte/callback', 'Auth\LoginController@handleProviderCallback');

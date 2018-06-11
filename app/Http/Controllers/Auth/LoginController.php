@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -20,20 +21,25 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * Redirect the user to the Vkontakte authentication page.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function redirectToProvider()
     {
-        $this->middleware('guest')->except('logout');
+        return Socialite::with('vkontakte')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Vkontakte.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('vkontakte')->user();
+        dd($user);
     }
 }
