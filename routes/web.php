@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// OAuth Routes
-Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
-Route::get('login/vkontakte/callback', 'Auth\LoginController@handleProviderCallback');
+// OAuth Routes for Moders
+Route::get('login/vkontakte/moder', 'Auth\LoginModersController@redirectToProvider');
+Route::get('login/vkontakte/callback/moder', 'Auth\LoginModersController@handleProviderCallback');
+
+// OAuth Routes for Players
+Route::get('login/vkontakte/players', 'Auth\LoginPlayersController@redirectToProvider');
+Route::get('login/vkontakte/callback/players', 'Auth\LoginPlayersController@handleProviderCallback');
