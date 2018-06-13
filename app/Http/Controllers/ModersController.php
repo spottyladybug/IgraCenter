@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
+use DB;
 use App\Moders;
 
 class ModersController extends Controller
 {
-    public function findModer($user)
+    public function setTimer(Request $request)
     {
-        
-        $authModer = Moders::where('vk_id_mod', $user->id)->first();
-        if ($authModer) {
-            return $authModer;
-        }
+        $start = $request->input('start');
+        $timerId = DB::table('timer_station')->insertGetId(['start' => $start]);
+        return view('stopTimer',['id'=>$timerId]);
     }
 
+    public function stopTimer(Request $request)
+    {
+        $id=$request->input('id');
+        DB::table('timer_station')->where('id_timer', $id)->update(['end' => date("Y-m-d H:i:s", time())]);
+        return view('timer');
+    }
 }

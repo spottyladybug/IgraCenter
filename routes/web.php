@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +10,13 @@
 |
 */
 Route::get('/home', function (){
-    return "Hello, Honey!";
+    return view('timer');
 });
 
 // OAuth Routes
 Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
 Route::get('/', 'Auth\LoginController@handleProviderCallback');
+
+//Timer
+Route::post('/setTimer', 'ModersController@setTimer');
+Route::post('/stopTimer', 'ModersController@stopTimer');
