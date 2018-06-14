@@ -8,6 +8,8 @@ use DB;
 
 class ModersController extends Controller
 {
+
+
     public function setTimer(Request $request)
     {
         $start = $request->input('start');

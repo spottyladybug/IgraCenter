@@ -9,14 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/home', function (){
-    return view('timer');
-});
-
-Route::get('/set', function (){
-    return view('timer');
-});
-
 // OAuth Routes
 Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
 Route::get('/', 'Auth\LoginController@handleProviderCallback');

@@ -8,6 +8,9 @@
     <title>Document</title>
 </head>
 <body>
+
 Hello, {{$name_user}}! You're Moder
+@component('timer')
+@endcomponent
 </body>
 </html>
