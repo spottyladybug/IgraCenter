@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Check_moders;
+use App\Check_users;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Moders;
 
 class LoginController extends Controller
 {
@@ -40,17 +39,25 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('vkontakte')->user();
-        $authUser = $this->findUser($user->getId());
-//        Auth::login($authUser, true);
-        return redirect($this->redirectTo);
-    }
 
-    public function findUser($user)
-    {
-        //Здесь нужно определить пользователя (пока не реализованно)
-        $idModer = Moders::where('vk_id_mod', $user)->value('id_mod');
-        if ($idModer) {
-            return $idModer;
+        $idUser = User::where('vk_id_user', $user->getId())->get()[0];
+        if (!$idUser) {
+            return response()->json('User does not exist');
+        }
+        $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
+        Auth::login($authUser, true);
+
+        switch ($idUser->group_user) {
+            case 1:
+                return view('moder', ['name_user' => $idUser->name_user]);
+                break;
+            case 2:
+                return view('player', ['name_user' => $idUser->name_user]);
+                break;
+            case 100:
+                return view('Dasha', ['name_user' => $idUser->name_user]);
+            default:
+                return response()->json('Ошибка. Несуществующая группа пользователей');
         }
     }
 }

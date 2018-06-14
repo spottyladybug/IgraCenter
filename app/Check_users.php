@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Check_users extends Authenticatable
 {
     use Notifiable;
 
-    protected $primaryKey = 'id_user';
+    protected $primaryKey = 'id_check_user';
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +17,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name_user', 'group_user', 'password',
+        'hash_user', 'random_user',
     ];
 }
