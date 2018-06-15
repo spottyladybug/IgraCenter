@@ -40,8 +40,8 @@ class ModersController extends Controller
 
     public function setInfo(Request $request)
     {
-        $id_stat_com = Auth::id();//как-то поменять нужно
-        $id_com_stat = Auth::id();
+        $id_stat_com = Auth::id();
+        $id_com_stat = $request->input('id_com_stat');
         $diff = $request->input('diff');
         $id_shtraf = $request->input('id_shtraf');
         $status_zagadka = $request->input('status_zagadka');
