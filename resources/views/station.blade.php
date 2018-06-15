@@ -38,8 +38,8 @@
         <select name='id_shtraf'>
             @foreach( $shtrafs as $shtraf)
                 @component('shtraf',
-                [ 'id' => $shtraf->id_com,
-                'name' => $shtraf->name_com])
+                [ 'id' => $shtraf->id_shtraf,
+                'name' => $shtraf->shtraf])
                 @endcomponent
             @endforeach
         </select><br>
