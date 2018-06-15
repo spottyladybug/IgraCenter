@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCheckUsersTable extends Migration
+class CreateUsersModersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCheckUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('check_users', function (Blueprint $table) {
-            $table->increments('id_check_user');
-            $table->string('random_user');
-            $table->text('remember_token');
-            $table->timestamps();
+        Schema::create('users_moders', function (Blueprint $table) {
+            $table->increments('id_user_moder');
+            $table->integer('id_station_moder');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCheckUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('check_users');
+        Schema::dropIfExists('moders');
     }
 }

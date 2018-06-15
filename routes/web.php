@@ -16,3 +16,6 @@ Route::get('/', 'Auth\LoginController@handleProviderCallback');
 //Timer
 Route::post('/setTimer', 'ModersController@setTimer');
 Route::post('/stopTimer', 'ModersController@stopTimer');
+
+//Information about station
+Route::post('/setInfo', 'ModersController@setInfo');
