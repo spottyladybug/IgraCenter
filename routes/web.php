@@ -23,3 +23,5 @@ Route::post('/stopTimer', 'ModersController@stopTimer');
 
 //Information about station
 Route::post('/setInfo', 'ModersController@setInfo');
+
+Route::post('/getEnigma', 'PlayersController@getEnigma');
