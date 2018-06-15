@@ -35,7 +35,7 @@ class ModersController extends Controller
         $diff = $start->diff($end);
         $min = $diff->format('%i');
         $sec = $diff->format('%s');
-        return view('station',['min'=>$min, 'sec'=>$sec, 'diff'=>$sec]);
+        return view('station',['min'=>$min, 'sec'=>$sec]);
     }
 
     public function setInfo(Request $request)
