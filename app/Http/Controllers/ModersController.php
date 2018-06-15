@@ -52,7 +52,7 @@ class ModersController extends Controller
                 'id_stat_com' => $id_stat_com,
                 'id_com_stat' => $id_com_stat,
                 'time_sec' => $diff,
-                'id_shtraf' => ($id_shtraf)? $id_shtraf : 0,
+                'id_shtraf' => $id_shtraf,
                 'status_zagadka' => ($status_zagadka)? 1 : 0,
                 'id_kur_stat' => $id_kur_stat]);
 
