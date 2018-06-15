@@ -29,7 +29,7 @@
                 @endcomponent
             @endforeach
         </select>
-        <input type='text' name='diff' hidden value="{{$diff}}">
+        <input type='text' name='diff' hidden value="{{$min*60 + $sec}}">
         <br>Минут:<input type='text' name='min' value="{{$min}}"><br>
         Секунд:<input type='text' name='sec' value="{{$sec}}"><br>
         <input type='checkbox' name='status_zagadka'> Загадка отгадана?<br>
