@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Users_moder;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
@@ -40,7 +41,7 @@ class ModersController extends Controller
 
     public function setInfo(Request $request)
     {
-        $id_stat_com = Auth::id();
+        $id_stat_com = Users_moder::where('id_user_moder',Auth::id())->value('id_station_moder');
         $id_com_stat = $request->input('id_com_stat');
         $diff = $request->input('diff');
         $id_shtraf = $request->input('id_shtraf');
