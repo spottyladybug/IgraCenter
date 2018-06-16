@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-Hello, {{$name_user}}! You're Dasha
+Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're Dasha
 <form method='post' action="/showTable">
     {!! csrf_field() !!}
     <input type="submit" name="showTable" value="Таблица результатов">
