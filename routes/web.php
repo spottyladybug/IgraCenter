@@ -25,3 +25,5 @@ Route::post('/stopTimer', 'ModersController@stopTimer');
 Route::post('/setInfo', 'ModersController@setInfo');
 
 Route::post('/getEnigma', 'PlayersController@getEnigma');
+
+Route::post('/showTable','DashaController@showTable');

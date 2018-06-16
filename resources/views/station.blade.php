@@ -13,9 +13,10 @@
 <body>
 <form method='post' action="/setInfo">
     <h3>
+        <?php $station_id = \App\Users_moder::where('id_user_moder',Auth::id())->value('id_station_moder'); ?>
         Станция
         <input type="text" name="station"
-               value="{{\App\Stations::where('id_station',Auth::id())->value('name_station')}}" disabled><br>
+               value="{{\App\Stations::where('id_station',$station_id)->value('name_station')}}" disabled><br>
         Куратор
         <input type="text" name="kurator" value="{{\App\User::where('id_user',Auth::id())->value('name_user')}}"
                disabled><br>
