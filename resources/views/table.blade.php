@@ -37,5 +37,6 @@
             'fine'=>$commands[$com+$stat]->shtraf])
             @endcomponent
         @endfor
+        <td>{{$commands[$com]->sum}}</td>
     @endfor
 </table>
