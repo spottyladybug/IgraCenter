@@ -21,6 +21,6 @@ Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're P
     <input type="submit" name="getEnigma" value="Получить загадку">
     <input type='text' name='command_id' hidden value={{$commandId}}>
 </form>
-@yield('enigma')
+@yield('Players.enigma')
 </body>
 </html>

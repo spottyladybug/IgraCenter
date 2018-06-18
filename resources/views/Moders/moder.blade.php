@@ -28,6 +28,6 @@ Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're M
     <input name='id_st_timer' type='text' hidden value="{{\App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder')}}">
     <input name='id_moder_timer' type='text' hidden value="{{Auth::id()}}">
 </form>
-@yield('stopTimer')
+@yield('Moders.stopTimer')
 </body>
 </html>

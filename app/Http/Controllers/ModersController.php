@@ -21,7 +21,7 @@ class ModersController extends Controller
                 'start' => $start,
                 'id_st_timer' => $id_st_timer,
                 'id_moder_timer' => $id_moder_timer]);
-        return view('stopTimer', ['id' => $timerId, 'start' => $start]);
+        return view('Moders.stopTimer', ['id' => $timerId, 'start' => $start]);
     }
 
     public function stopTimer(Request $request)
@@ -36,7 +36,7 @@ class ModersController extends Controller
         $diff = $start->diff($end);
         $min = $diff->format('%i');
         $sec = $diff->format('%s');
-        return view('station',['min'=>$min, 'sec'=>$sec]);
+        return view('Moders.station',['min'=>$min, 'sec'=>$sec]);
     }
 
     public function setInfo(Request $request)

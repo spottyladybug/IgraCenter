@@ -49,13 +49,13 @@ class LoginController extends Controller
 
         switch ($idUser->group_user) {
             case 1:
-                return view('moder');
+                return view('Moders.moder');
                 break;
             case 2:
-                return view('player');
+                return view('Players.player');
                 break;
             case 100:
-                return view('Dasha');
+                return view('Dasha.dasha');
             default:
                 return response()->json('Ошибка. Несуществующая группа пользователей');
         }

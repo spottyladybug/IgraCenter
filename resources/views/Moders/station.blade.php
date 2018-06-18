@@ -24,7 +24,7 @@
         <?php $commands = \App\Commands::all() ?>
         <select name='id_com_stat'>
             @foreach( $commands as $command)
-                @component('commands',
+                @component('Moders.commands',
                 [ 'id' => $command->id_com,
                 'name' => $command->name_com])
                 @endcomponent
@@ -38,7 +38,7 @@
         <?php $shtrafs = \App\Shtraf::all() ?>
         <select name='id_shtraf'>
             @foreach( $shtrafs as $shtraf)
-                @component('shtraf',
+                @component('Moders.shtraf',
                 [ 'id' => $shtraf->id_shtraf,
                 'name' => $shtraf->shtraf])
                 @endcomponent

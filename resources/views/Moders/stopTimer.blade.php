@@ -1,6 +1,6 @@
-@extends('moder')
+@extends('Moders.moder')
 
-@section('stopTimer')
+@section('Moders.stopTimer')
     Секундомер:
     <div id="timer">0</div>
     <script>init();</script>
