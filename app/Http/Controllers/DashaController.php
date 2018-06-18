@@ -15,6 +15,6 @@ class DashaController extends Controller
             $value->sum = $value->time_sec+$value->shtraf-5*$value->status_zagadka;
         }
 
-        return view('table',['commands'=>$result]);
+        return view('Dasha.table',['commands'=>$result]);
     }
 }
