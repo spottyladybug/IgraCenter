@@ -36,12 +36,12 @@ class ModersController extends Controller
         $diff = $start->diff($end);
         $min = $diff->format('%i');
         $sec = $diff->format('%s');
-        return view('Moders.station',['min'=>$min, 'sec'=>$sec]);
+        return view('Moders.station', ['min' => $min, 'sec' => $sec]);
     }
 
     public function setInfo(Request $request)
     {
-        $id_stat_com = Moders::where('id_user_moder',Auth::id())->value('id_station_moder');
+        $id_stat_com = Moders::where('id_user_moder', Auth::id())->value('id_station_moder');
         $id_com_stat = $request->input('id_com_stat');
         $diff = $request->input('diff');
         $id_shtraf = $request->input('id_shtraf');
@@ -54,9 +54,9 @@ class ModersController extends Controller
                 'id_com_stat' => $id_com_stat,
                 'time_sec' => $diff,
                 'id_shtraf' => $id_shtraf,
-                'status_zagadka' => ($status_zagadka)? 1 : 0,
+                'status_zagadka' => ($status_zagadka) ? 1 : 0,
                 'id_kur_stat' => $id_kur_stat]);
 
-        return response('Все записано и отправлено');
+        return view('Moders.moder');
     }
 }
