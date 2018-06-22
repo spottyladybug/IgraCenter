@@ -55,7 +55,7 @@ class LoginController extends Controller
                 return view('Players.player');
                 break;
             case 100:
-                return view('Dasha.dasha');
+                return view('Admin.admin');
             default:
                 return response()->json('Ошибка. Несуществующая группа пользователей');
         }

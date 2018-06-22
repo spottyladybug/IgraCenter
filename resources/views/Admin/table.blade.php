@@ -31,7 +31,7 @@
             </td>
         </tr>
         @for($stat=0;$stat!==$count;$stat++)
-            @component('Dasha.comRow',
+            @component('Admin.comRow',
             [ 'time' => $commands[$com+$stat]->time_sec,
             'enigma' => $commands[$com+$stat]->status_zagadka,
             'fine'=>$commands[$com+$stat]->shtraf])
