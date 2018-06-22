@@ -48,6 +48,11 @@ class ModersController extends Controller
         $status_zagadka = $request->input('status_zagadka');
         $id_kur_stat = Auth::id();
 
+        $primary = DB::table('commands_stations')->where([['id_stat_com', $id_stat_com], ['id_com_stat', $id_com_stat]])->first();
+        if ($primary){
+            return response('Данная команда уже прошла эту станцию');
+        }
+
         DB::table('commands_stations')
             ->insert([
                 'id_stat_com' => $id_stat_com,
