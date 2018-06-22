@@ -40,7 +40,7 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('vkontakte')->user();
 
-        $idUser = User::where('vk_id_user', $user->getId())->get()[0];
+        $idUser = User::where('vk_id_user', $user->getId())->first();
         if (!$idUser) {
             return response()->json('User does not exist');
         }
