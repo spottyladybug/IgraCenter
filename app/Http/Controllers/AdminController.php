@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 
-class DashaController extends Controller
+class AdminController extends Controller
 {
     public function showTable()
     {
@@ -15,6 +15,6 @@ class DashaController extends Controller
             $value->sum = $value->time_sec+$value->shtraf-5*$value->status_zagadka;
         }
 
-        return view('Dasha.table',['commands'=>$result]);
+        return view('Admin.table',['commands'=>$result]);
     }
 }
