@@ -20,6 +20,7 @@ class CommandsStations extends Migration
             $table->integer('id_shtraf');
             $table->boolean('status_zagadka');
             $table->integer('id_kur_stat');
+            $table->primary(['id_stat_com', 'id_com_stat']);
         });
     }
 
