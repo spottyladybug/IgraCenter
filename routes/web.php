@@ -9,13 +9,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/main', function () {
-    return view('main');
-});
+// Route::get('/', function ( Request $request ) {
+//     if( request( 'code' ) ) {
+//         // return request( 'code' );
+//         Route::get('/', 'Auth\LoginController@handleProviderCallback');
+//     } else {
+//         return view('main');
+//     }
+// });
 
 // OAuth Routes
-Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
-Route::get('/', 'Auth\LoginController@handleProviderCallback');
+// Route::get('/', 'Auth\LoginController@handleProviderCallback');
+// Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
+Route::get('/', 'Auth\LoginController@testLogin');
+Route::get('login/vkontakte', 'Auth\LoginController@testLoginRedirect');
 
 //Timer
 Route::post('/setTimer', 'ModersController@setTimer');
@@ -27,3 +34,31 @@ Route::post('/setInfo', 'ModersController@setInfo');
 Route::post('/getEnigma', 'PlayersController@getEnigma');
 
 Route::post('/showTable','AdminController@showTable');
+
+// Public routes
+// Route::get('/players', 'TeamController@viewPlayers');
+Route::get('/teams', 'TeamController@index');
+Route::get('/routes_log', 'RouteController@routesLog');
+Route::get('/routes_log/{team_id}', 'RouteController@routesLog');
+
+// Admin routes
+Route::group(['prefix'=>'admin'], function() {
+    Route::get('/', function() {
+        return 'admin main';
+    });
+
+    Route::resource('/route', 'RouteController');
+    Route::resource('/team', 'TeamController');
+    Route::resource('/riddle', 'RiddleController');
+    Route::resource('/station', 'StationController');
+
+});
+
+// Moder routes
+Route::group(['prefix'=>'moder'], function() {
+    Route::get('/', 'ModeratorController@index')->name('moder.index');
+    Route::patch('/setArrival/{station_id}', 'ModeratorController@setArrival')->name('moder.setarrival');
+    Route::patch('/setDeparture/{team}', 'ModeratorController@setDeparture')->name('moder.setdeparture');
+});
+
+// Teams routes
