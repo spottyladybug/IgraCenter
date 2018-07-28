@@ -51,8 +51,6 @@ class LoginController extends Controller
             // $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
             Auth::login($idUser, true);
 
-            var_dump($idUser->user_group);
-
             switch ($idUser->user_group) {
                 case 0: // admin
                     return redirect('admin');

@@ -40,8 +40,11 @@ Route::get('/routes_log', 'RouteController@routesLog');
 Route::get('/routes_log/{team_id}', 'RouteController@routesLog');
 
 // Admin routes
-Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'admin']], function() {
+    
     Route::get('/', function() {
+        var_dump( Auth::user()->user_group == 0 );
+        // echo Auth::user()->isModer;
         return 'admin main';
     });
 
@@ -49,11 +52,10 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function() {
     Route::resource('/team', 'TeamController');
     Route::resource('/riddle', 'RiddleController');
     Route::resource('/station', 'StationController');
-
 });
 
 // Moder routes
-Route::group(['prefix'=>'moder', 'middleware' => 'auth'], function() {
+Route::group(['prefix'=>'moder', 'middleware' => ['auth', 'moder']], function() {
     Route::get('/', 'ModeratorController@index')->name('moder.index');
     Route::patch('/setArrival/{station_id}', 'ModeratorController@setArrival')->name('moder.setarrival');
     Route::patch('/setDeparture/{team}', 'ModeratorController@setDeparture')->name('moder.setdeparture');
