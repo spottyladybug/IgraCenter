@@ -21,6 +21,8 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 $factory->state(App\User::class, 'administrator', [
+    'name' => 'Владислав Суриков',
+    'vk_id' => 51525123,
     'user_group' => 0
 ]);
 

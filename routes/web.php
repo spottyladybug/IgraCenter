@@ -21,8 +21,8 @@
 // OAuth Routes
 // Route::get('/', 'Auth\LoginController@handleProviderCallback');
 // Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
-Route::get('/', 'Auth\LoginController@testLogin');
-Route::get('login/vkontakte', 'Auth\LoginController@testLoginRedirect');
+Route::get('/', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/vkontakte', 'Auth\LoginController@redirectToProvider');
 
 //Timer
 Route::post('/setTimer', 'ModersController@setTimer');
@@ -30,9 +30,7 @@ Route::post('/stopTimer', 'ModersController@stopTimer');
 
 //Information about station
 Route::post('/setInfo', 'ModersController@setInfo');
-
 Route::post('/getEnigma', 'PlayersController@getEnigma');
-
 Route::post('/showTable','AdminController@showTable');
 
 // Public routes
@@ -42,7 +40,7 @@ Route::get('/routes_log', 'RouteController@routesLog');
 Route::get('/routes_log/{team_id}', 'RouteController@routesLog');
 
 // Admin routes
-Route::group(['prefix'=>'admin'], function() {
+Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function() {
     Route::get('/', function() {
         return 'admin main';
     });
@@ -55,7 +53,7 @@ Route::group(['prefix'=>'admin'], function() {
 });
 
 // Moder routes
-Route::group(['prefix'=>'moder'], function() {
+Route::group(['prefix'=>'moder', 'middleware' => 'auth'], function() {
     Route::get('/', 'ModeratorController@index')->name('moder.index');
     Route::patch('/setArrival/{station_id}', 'ModeratorController@setArrival')->name('moder.setarrival');
     Route::patch('/setDeparture/{team}', 'ModeratorController@setDeparture')->name('moder.setdeparture');

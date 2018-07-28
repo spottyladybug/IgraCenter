@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name', 100);
             $table->integer('vk_id');
             $table->tinyInteger('user_group');
+            $table->rememberToken(); 
             // $table->timestamps();
         });
     }

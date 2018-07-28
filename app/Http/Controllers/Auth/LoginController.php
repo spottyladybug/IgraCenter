@@ -41,22 +41,31 @@ class LoginController extends Controller
         if( request( 'code' ) ) {
             $user = Socialite::driver('vkontakte')->user();
 
-            $idUser = User::where('vk_id_user', $user->getId())->first();
+            $idUser = User::where('vk_id', $user->getId())->first();
+            
+            // var_dump( $idUser );
+            
             if (!$idUser) {
                 return response()->json('User does not exist');
             }
-            $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
-            Auth::login($authUser, true);
+            // $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
+            Auth::login($idUser, true);
 
-            switch ($idUser->group_user) {
-                case 1:
-                    return view('Moders.moder');
+            var_dump($idUser->user_group);
+
+            switch ($idUser->user_group) {
+                case 0: // admin
+                    return redirect('admin');
                     break;
-                case 2:
-                    return view('Players.player');
+                    
+                case 1: // moder
+                    return redirect()->route('moder.index');
                     break;
-                case 100:
-                    return view('Admin.admin');
+                    
+                case 2: // player
+                    return redirect('/routes_log');
+                    break;
+
                 default:
                     return response()->json('Ошибка. Несуществующая группа пользователей');
             }
