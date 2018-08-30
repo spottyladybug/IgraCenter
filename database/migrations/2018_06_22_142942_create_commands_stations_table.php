@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CommandsStations extends Migration
+class CreateCommandsStationsTable extends Migration
 {
     /**
      * Run the migrations.

@@ -16,7 +16,11 @@ class CreateStationsTable extends Migration
         Schema::create('stations', function (Blueprint $table) {
             $table->increments('id_station');
             $table->string('name_station');
-            $table->integer('id_zag_st');
+            $table->integer('id_zag_st')->unsigned()->nullable();
+        });
+
+        Schema::table('stations', function (Blueprint $table) {
+            $table->foreign('id_zag_st')->references('id_zag')->on('zagadki')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

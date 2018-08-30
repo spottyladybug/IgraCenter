@@ -15,8 +15,12 @@ class CreateUsersPlayersTable extends Migration
     {
         Schema::create('users_players', function (Blueprint $table) {
             $table->increments('id_user_player');
-            $table->integer('team_player');
+            $table->integer('team_player')->unsigned()->nullable();
             $table->integer('status_player');
+        });
+
+        Schema::table('users_players', function (Blueprint $table) {
+            $table->foreign('team_player')->references('id_com')->on('commands')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
