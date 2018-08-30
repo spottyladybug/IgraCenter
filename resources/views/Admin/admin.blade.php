@@ -13,5 +13,21 @@ Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're a
     {!! csrf_field() !!}
     <input type="submit" name="showTable" value="Таблица результатов">
 </form>
+<form method='post' action="/addModer">
+    {!! csrf_field() !!}
+    <input type="submit" name="addModer" value="Добавить куратора">
+</form>
+<form method='post' action="/addTeam">
+    {!! csrf_field() !!}
+    <input type="submit" name="addTeam" value="Добавить команду">
+</form>
+<form method='post' action="/teamList">
+    {!! csrf_field() !!}
+    <input type="submit" name="teamList" value="Список команд">
+</form>
+<form method='post' action="/moderList">
+    {!! csrf_field() !!}
+    <input type="submit" name="moderList" value="Список кураторов">
+</form>
 </body>
 </html>

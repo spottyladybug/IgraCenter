@@ -26,4 +26,9 @@ Route::post('/setInfo', 'ModersController@setInfo');
 
 Route::post('/getEnigma', 'PlayersController@getEnigma');
 
+//Admin routes
 Route::post('/showTable','AdminController@showTable');
+Route::post('/addModer','AdminController@addModer');
+Route::post('/addTeam','AdminController@addTeam');
+Route::post('/moderList','AdminController@showModerList');
+Route::post('/teamList','AdminController@showTeamList');

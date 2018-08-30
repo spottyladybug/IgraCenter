@@ -17,4 +17,24 @@ class AdminController extends Controller
 
         return view('Admin.table',['commands'=>$result]);
     }
+
+    public function addModer()
+    {
+        return view('Admin.addModer');
+    }
+
+    public function addTeam()
+    {
+        return view('Admin.addTeam');
+    }
+
+    public function showModerList()
+    {
+        return view('Admin.moderList');
+    }
+
+    public function showTeamList()
+    {
+        return view('Admin.teamList');
+    }
 }
