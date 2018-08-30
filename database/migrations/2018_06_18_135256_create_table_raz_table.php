@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableRaz extends Migration
+class CreateTableRazTable extends Migration
 {
     /**
      * Run the migrations.
@@ -26,6 +26,10 @@ class TableRaz extends Migration
             $table->integer('COL 10');
             $table->integer('COL 11');
             $table->integer('COL 12');
+        });
+
+        Schema::table('table_raz', function (Blueprint $table) {
+            $table->foreign('team_id')->references('id_com')->on('commands')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

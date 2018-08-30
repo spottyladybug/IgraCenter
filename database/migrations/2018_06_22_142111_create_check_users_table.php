@@ -19,6 +19,10 @@ class CreateCheckUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::table('check_users', function (Blueprint $table) {
+            $table->foreign('id_check_user')->references('id_user')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**
