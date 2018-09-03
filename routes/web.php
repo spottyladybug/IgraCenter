@@ -28,7 +28,29 @@ Route::post('/getEnigma', 'PlayersController@getEnigma');
 
 //Admin routes
 Route::post('/showTable','AdminController@showTable');
+Route::get('/addModer',function () {
+    return view('Admin.addModer');
+});
 Route::post('/addModer','AdminController@addModer');
+Route::get('/addStation',function () {
+    return view('Admin.addStation');
+});
+Route::post('/addStation','AdminController@addStation');
+Route::get('/addTeam',function () {
+    return view('Admin.addTeam');
+});
 Route::post('/addTeam','AdminController@addTeam');
-Route::post('/moderList','AdminController@showModerList');
-Route::post('/teamList','AdminController@showTeamList');
+Route::get('/moderList',function () {
+    return view('Admin.moderList');
+});
+Route::get('/teamList',function () {
+    return view('Admin.teamList');
+});
+Route::post('/addEnigma', 'AdminController@addEnigma');
+Route::get('/addEnigma',function () {
+    return view('Admin.addEnigma');
+});
+Route::post('/addShtrafs', 'AdminController@addShtrafs');
+Route::get('/addShtrafs',function () {
+    return view('Admin.addShtrafs');
+});

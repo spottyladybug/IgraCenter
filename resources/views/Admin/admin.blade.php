@@ -9,25 +9,45 @@
 </head>
 <body>
 Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're admin
-<form method='post' action="/showTable">
+<h3><form method='post' action="/showTable">
     {!! csrf_field() !!}
     <input type="submit" name="showTable" value="Таблица результатов">
 </form>
-<form method='post' action="/addModer">
-    {!! csrf_field() !!}
-    <input type="submit" name="addModer" value="Добавить куратора">
-</form>
-<form method='post' action="/addTeam">
-    {!! csrf_field() !!}
-    <input type="submit" name="addTeam" value="Добавить команду">
-</form>
-<form method='post' action="/teamList">
-    {!! csrf_field() !!}
-    <input type="submit" name="teamList" value="Список команд">
-</form>
-<form method='post' action="/moderList">
-    {!! csrf_field() !!}
-    <input type="submit" name="moderList" value="Список кураторов">
-</form>
+</h3>
+<h3><form method='get' action="/addEnigma">
+        {!! csrf_field() !!}
+        <input type="submit" name="addEnigma" value="Добавить загадку">
+    </form>
+</h3>
+<h3><form method='get' action="/addShtrafs">
+        {!! csrf_field() !!}
+        <input type="submit" name="moderList" value="Добавить штрафы">
+    </form>
+</h3>
+<h3><form method='get' action="/addStation">
+        {!! csrf_field() !!}
+        <input type="submit" name="addStation" value="Создать станцию">
+    </form>
+</h3>
+<h3><form method='get' action="/addModer">
+        {!! csrf_field() !!}
+        <input type="submit" name="addModer" value="Добавить куратора">
+    </form>
+</h3>
+<h3><form method='get' action="/addTeam">
+        {!! csrf_field() !!}
+        <input type="submit" name="addTeam" value="Добавить команду">
+    </form>
+</h3>
+<h3><form method='get' action="/teamList">
+        {!! csrf_field() !!}
+        <input type="submit" name="teamList" value="Список команд">
+    </form>
+</h3>
+<h3><form method='get' action="/moderList">
+        {!! csrf_field() !!}
+        <input type="submit" name="moderList" value="Список кураторов">
+    </form>
+</h3>
 </body>
 </html>
