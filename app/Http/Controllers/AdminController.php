@@ -17,7 +17,7 @@ class AdminController extends Controller
 {
     public function showTable()
     {
-        $result = DB::select('SELECT commands.name_com, id_stat_com, time_sec, shtrafs.shtraf, status_zagadka, id_kur_stat AS sum FROM commands_stations INNER JOIN shtrafs ON commands_stations.id_shtraf=shtrafs.id_shtraf INNER JOIN commands ON id_com_stat=id_com ORDER BY id_stat_com ASC');
+        $result = DB::select('SELECT id_com_stat, id_stat_com, time_sec, shtrafs.shtraf, status_zagadka,id_kur_stat, id_kur_stat AS sum FROM commands_stations INNER JOIN shtrafs ON commands_stations.id_shtraf=shtrafs.id_shtraf ORDER BY id_stat_com ASC');
 
         foreach ($result as $value) {
             $value->sum = $value->time_sec + $value->shtraf - 5 * $value->status_zagadka;

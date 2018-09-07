@@ -6,12 +6,9 @@
             Название команды
         </td>
         <?php $stations = \App\Stations::all(); ?>
-        @foreach($stations as $station)
-            <td colspan="3">Станция: {{$station->name_station}}
-                <br> Куратор: {{\App\Moders::join('users', 'users.id_user', '=', 'users_moders.id_user_moder')
-            ->where('id_station_moder',$station->id_station)
-            ->value('name_user')}}</td>
-        @endforeach
+        @for($numb=1;$numb<=$stations->count();$numb++)
+            <td colspan="3">Станция № {{$numb}}</td>
+        @endfor
         <td rowspan="2">Общая сумма</td>
     </tr>
     <tr>
@@ -23,20 +20,43 @@
     </tr>
     </thead>
 
-    <?php $num = \App\Commands::count(); $count = \App\Stations::count(); ?>
-    @for($com=0;$com!==$num;$com++)
+    <?php $coms = \App\Commands::all();?>
+    @foreach ($coms as $com)
+        <?php $sum = 0; $kur = array();?>
         <tr style='text-align: center; font-size: 16px;'>
-            <td rowspan='2'>
-                {{$commands[$com]->name_com}}
+            <td rowspan="2">
+                {{$com->name_com}}
             </td>
-        </tr>
-        @for($stat=0;$stat!==$count;$stat++)
-            @component('Admin.comRow',
-            [ 'time' => $commands[$com+$stat]->time_sec,
-            'enigma' => $commands[$com+$stat]->status_zagadka,
-            'fine'=>$commands[$com+$stat]->shtraf])
-            @endcomponent
+        <?php $count = \App\CommandsStations::count(); $stCount = 0;?>
+        @for($num = 0; $num !== $count; $num++)
+            @if ($commands[$num]->id_com_stat == $com->id_com)
+                @component('Admin.comRow',
+                [ 'time' => $commands[$num]->time_sec,
+                'enigma' => $commands[$num]->status_zagadka,
+                'fine'=>$commands[$num]->shtraf])
+                @endcomponent
+                <?php $sum += $commands[$num]->sum; $stCount++; $kur[] = $commands[$num]->id_kur_stat?>
+            @endif
         @endfor
-        <td>{{$commands[$com]->sum}}</td>
-    @endfor
+        <?php $statCount = \App\Stations::count(); ?>
+        @if ($stCount < $statCount)
+            @for($c = $stCount; $c!== $statCount; $c++)
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+            @endfor
+        @endif
+        <td rowspan="2">{{$sum}}</td>
+        </tr>
+            <tr style="text-align: center; font-size: 16px;">
+                @foreach($kur as $moder)
+                    <td colspan="3">Куратор: {{\App\User::where('id_user', $moder)->value('name_user')}}</td>
+                @endforeach
+                    @if ($stCount < $statCount)
+                        @for($c = $stCount; $c!== $statCount; $c++)
+                            <td colspan="3"> </td>
+                        @endfor
+                    @endif
+            </tr>
+    @endforeach
 </table>
