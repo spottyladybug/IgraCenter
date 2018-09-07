@@ -17,12 +17,14 @@ class PlayersController extends Controller
         $curst = $past_stations + 2;
 
         if(($curst-1)>Stations::count()){
-            return response('Вы прошли все станции');
+            $current_station = DB::table('table_raz')->
+            select('COL '.($curst-1))->
+            where('team_id',$command_id)->get()[0];
+        }else {
+            $current_station = DB::table('table_raz')->
+            select('COL '.$curst)->
+            where('team_id',$command_id)->get()[0];
         }
-
-        $current_station = DB::table('table_raz')->
-        select('COL '.$curst)->
-        where('team_id',$command_id)->get()[0];
 
         $id_enigma = Stations::where('id_station', current($current_station))->value('id_zag_st');
         $enigma = Zagadki::where('id_zag', $id_enigma)->get()[0];
