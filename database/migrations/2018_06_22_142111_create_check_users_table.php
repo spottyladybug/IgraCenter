@@ -15,7 +15,7 @@ class CreateCheckUsersTable extends Migration
     {
         Schema::create('check_users', function (Blueprint $table) {
             $table->increments('id_check_user');
-            $table->string('random_user');
+            $table->string('random_user')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

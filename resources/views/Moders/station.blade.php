@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<form method='post' action="/setInfo">
+<form method='post' action="/moder/setInfo">
     <h3>
         <?php $station_id = \App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder'); ?>
         Станция
@@ -24,10 +24,7 @@
         <?php $commands = \App\Commands::all() ?>
         <select name='id_com_stat'>
             @foreach( $commands as $command)
-                @component('Moders.commands',
-                [ 'id' => $command->id_com,
-                'name' => $command->name_com])
-                @endcomponent
+                <option value="{{$command->id_com}}">{{$command->name_com}}</option>
             @endforeach
         </select>
         <input type='text' name='diff' hidden value="{{$min*60 + $sec}}">
@@ -38,10 +35,7 @@
         <?php $shtrafs = \App\Shtraf::all() ?>
         <select name='id_shtraf'>
             @foreach( $shtrafs as $shtraf)
-                @component('Moders.shtraf',
-                [ 'id' => $shtraf->id_shtraf,
-                'name' => $shtraf->shtraf])
-                @endcomponent
+                <option value="{{$shtraf->id_shtraf}}">{{$shtraf->shtraf}}</option>
             @endforeach
         </select><br>
         <input type='submit' name='send' value='ОТПРАВИТЬ'>

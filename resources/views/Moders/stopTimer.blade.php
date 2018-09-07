@@ -22,7 +22,7 @@
 Секундомер:
 <div id="timer">0</div>
 <script>init();</script>
-<form method="POST" action="/stopTimer">
+<form method="POST" action="/moder/stopTimer">
     {!! csrf_field() !!}
     <input type="submit" name="startbyn" value="Остановить таймер">
     <input name='start' type='text' hidden value="{{$start}}">
