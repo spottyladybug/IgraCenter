@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<form method='post' action="/addEnigma" enctype="multipart/form-data">
+<form method='post' action="/admin/addNewEnigma" enctype="multipart/form-data">
     <h3>
         <p>Текст загадки<Br>
             <textarea name="text_zag" rows="15"></textarea></p>

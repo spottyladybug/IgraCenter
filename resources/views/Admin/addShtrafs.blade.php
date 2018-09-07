@@ -15,7 +15,7 @@
 @foreach( $shtrafs as $shtraf)
     <h3>{{$shtraf->id_shtraf}} - {{$shtraf->shtraf}}</h3>
 @endforeach
-<form method='post' action="/addShtrafs">
+<form method='post' action="/admin/addNewShtrafs">
     <h3>
         Количество вычитаемых баллов за штраф
         <input type="text" name="shtraf"><br>

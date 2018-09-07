@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('Admin.table', ['commands' => $result]);
     }
 
-    public function addModer(Request $request)
+    public function addNewModer(Request $request)
     {
         if (User::where('vk_id_user', $request->input('id'))->first()) {
             return response('Такой пользователь уже существует. Запись невозможна');
@@ -46,7 +46,7 @@ class AdminController extends Controller
         return response('Новый куратор успешно добавлен');
     }
 
-    public function addStation(Request $request)
+    public function addNewStation(Request $request)
     {
         $station = new Stations;
         $station->name_station = $request->input('name');
@@ -55,7 +55,7 @@ class AdminController extends Controller
         return response('Новая станция успешно добавлена');
     }
 
-    public function addTeam(Request $request)
+    public function addNewTeam(Request $request)
     {
         if (User::where('vk_id_user', $request->input('id'))->first()) {
             return response('Такой пользователь уже существует. Запись невозможна');
@@ -81,7 +81,7 @@ class AdminController extends Controller
         return response('Новая команда успешно создана');
     }
 
-    public function addEnigma(Request $request)
+    public function addNewEnigma(Request $request)
     {
         $enigma = new Zagadki;
         $enigma->text_zag = $request->input('text_zag');
@@ -96,7 +96,7 @@ class AdminController extends Controller
         return response('Загадка успешно создана');
     }
 
-    public function addShtrafs(Request $request)
+    public function addNewShtrafs(Request $request)
     {
         $shtraf = new Shtraf;
         $shtraf->shtraf = $request->input('shtraf');

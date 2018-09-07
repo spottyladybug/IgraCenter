@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<form method='post' action="/setInfo">
+<form method='post' action="/moder/setInfo">
     <h3>
         <?php $station_id = \App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder'); ?>
         Станция

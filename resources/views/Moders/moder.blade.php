@@ -11,7 +11,7 @@
 
 Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're Moder
 
-<form method="POST" action="/setTimer">
+<form method="POST" action="/moder/setTimer">
     {!! csrf_field() !!}
     <input type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
     <input name='id_st_timer' type='text' hidden value="{{\App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder')}}">

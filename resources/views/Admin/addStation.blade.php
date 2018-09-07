@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<form method='post' action="/addStation">
+<form method='post' action="/admin/addNewStation">
     <h3>
         Название станции
         <input type="text" name="name"><br>

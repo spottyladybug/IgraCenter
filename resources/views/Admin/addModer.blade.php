@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<form method='post' action="/addModer">
+<form method='post' action="/admin/addNewModer">
     <h3>
         Станция
         <?php $stations = \App\Stations::all() ?>

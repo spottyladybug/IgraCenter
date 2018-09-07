@@ -24,37 +24,39 @@ Route::group(['prefix'=>'moder'], function() {
 
     //Information about station
     Route::post('/setInfo', 'ModersController@setInfo');
+});
 
+    Route::group(['prefix'=>'player'], function() {
     Route::post('/getEnigma', 'PlayersController@getEnigma');
 });
 
-Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'admin']], function() {
+Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
     //Admin routes
     Route::post('/showTable','AdminController@showTable');
-    Route::get('/addModer',function () {
+    Route::post('/addModer',function () {
         return view('Admin.addModer');
     });
-    Route::post('/addModer','AdminController@addModer');
-    Route::get('/addStation',function () {
+    Route::post('/addNewModer','AdminController@addModer');
+    Route::post('/addStation',function () {
         return view('Admin.addStation');
     });
-    Route::post('/addStation','AdminController@addStation');
-    Route::get('/addTeam',function () {
+    Route::post('/addNewStation','AdminController@addStation');
+    Route::post('/addTeam',function () {
         return view('Admin.addTeam');
     });
-    Route::post('/addTeam','AdminController@addTeam');
-    Route::get('/moderList',function () {
+    Route::post('/addNewTeam','AdminController@addTeam');
+    Route::post('/moderList',function () {
         return view('Admin.moderList');
     });
-    Route::get('/teamList',function () {
+    Route::post('/teamList',function () {
         return view('Admin.teamList');
     });
-    Route::post('/addEnigma', 'AdminController@addEnigma');
-    Route::get('/addEnigma',function () {
+    Route::post('/addNewEnigma', 'AdminController@addEnigma');
+    Route::post('/addEnigma',function () {
         return view('Admin.addEnigma');
     });
-    Route::post('/addShtrafs', 'AdminController@addShtrafs');
-    Route::get('/addShtrafs',function () {
+    Route::post('/addNewShtrafs', 'AdminController@addShtrafs');
+    Route::post('/addShtrafs',function () {
         return view('Admin.addShtrafs');
     });
 });
