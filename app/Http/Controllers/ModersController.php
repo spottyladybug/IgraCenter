@@ -43,7 +43,7 @@ class ModersController extends Controller
     {
         $id_stat_com = Moders::where('id_user_moder', Auth::id())->value('id_station_moder');
         $id_com_stat = $request->input('id_com_stat');
-        $diff = $request->input('diff');
+        $diff = $request->input('min')*60 + $request->input('sec');
         $id_shtraf = $request->input('id_shtraf');
         $status_zagadka = $request->input('status_zagadka');
         $id_kur_stat = Auth::id();
