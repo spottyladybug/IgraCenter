@@ -38,26 +38,30 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('vkontakte')->user();
+        if( request( 'code' ) ) {
+            $user = Socialite::driver('vkontakte')->user();
 
-        $idUser = User::where('vk_id_user', $user->getId())->first();
-        if (!$idUser) {
-            return response()->json('User does not exist');
-        }
-        $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
-        Auth::login($authUser, true);
+            $idUser = User::where('vk_id_user', $user->getId())->first();
+            if (!$idUser) {
+                return response()->json('User does not exist');
+            }
+            $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
+            Auth::login($authUser, true);
 
-        switch ($idUser->group_user) {
-            case 1:
-                return view('Moders.moder');
-                break;
-            case 2:
-                return view('Players.player');
-                break;
-            case 100:
-                return view('Admin.admin');
-            default:
-                return response()->json('Ошибка. Несуществующая группа пользователей');
+            switch ($idUser->group_user) {
+                case 1:
+                    return view('Moders.moder');
+                    break;
+                case 2:
+                    return view('Players.player');
+                    break;
+                case 100:
+                    return view('admin.admin');
+                default:
+                    return response()->json('Ошибка. Несуществующая группа пользователей');
+            } 
+        } else {
+            return view('main');
         }
     }
 }
