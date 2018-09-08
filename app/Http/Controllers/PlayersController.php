@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Settings;
 use App\Stations;
 use App\Zagadki;
 use DB;
@@ -11,6 +12,9 @@ class PlayersController extends Controller
 {
     public function getEnigma(Request $request)
     {
+        if (Settings::where('name', 'stop')->exists()){
+            return response('Игра окончена');
+        }
         $command_id = $request->input('command_id');
         $past_stations = DB::table('commands_stations')->where('id_com_stat', $command_id)->count();
 

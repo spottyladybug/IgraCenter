@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Check_users;
 use App\Commands;
 use App\Players;
+use App\Settings;
 use App\Shtraf;
 use App\Stations;
 use App\Zagadki;
@@ -102,5 +103,13 @@ class AdminController extends Controller
         $shtraf->shtraf = $request->input('shtraf');
         $shtraf->save();
         return response('Штраф успешно добавлен');
+    }
+
+    public function stopGame()
+    {
+        $stop = new Settings;
+        $stop->name = 'stop';
+        $stop->save();
+        return response('Игра остановлена');
     }
 }

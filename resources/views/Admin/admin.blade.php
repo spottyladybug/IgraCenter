@@ -49,5 +49,10 @@ Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're a
         <input type="submit" name="moderList" value="Список кураторов">
     </form>
 </h3>
+<h3><form method='post' action="/admin/stopGame">
+        {!! csrf_field() !!}
+        <input type="submit" name="stopGame" value="Стоп игра">
+    </form>
+</h3>
 </body>
 </html>

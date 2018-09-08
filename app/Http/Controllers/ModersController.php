@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Moders;
+use App\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use DB;
@@ -13,6 +14,9 @@ class ModersController extends Controller
 {
     public function setTimer(Request $request)
     {
+        if (Settings::where('name', 'stop')->exists()){
+            return response('Игра окончена');
+        }
         $start = date("Y-m-d H:i:s", time());
         $id_st_timer = $request->input('id_st_timer');
         $id_moder_timer = $request->input('id_moder_timer');
@@ -26,6 +30,9 @@ class ModersController extends Controller
 
     public function stopTimer(Request $request)
     {
+        if (Settings::where('name', 'stop')->exists()){
+            return response('Игра окончена');
+        }
         $id = $request->input('id');
         $start = $request->input('start');
         $end = date("Y-m-d H:i:s", time());
@@ -41,6 +48,9 @@ class ModersController extends Controller
 
     public function setInfo(Request $request)
     {
+        if (Settings::where('name', 'stop')->exists()){
+            return response('Игра окончена');
+        }
         $id_stat_com = Moders::where('id_user_moder', Auth::id())->value('id_station_moder');
         $id_com_stat = $request->input('id_com_stat');
         $diff = $request->input('min')*60 + $request->input('sec');
