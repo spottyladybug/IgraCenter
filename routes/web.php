@@ -59,5 +59,6 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
     Route::post('/addShtrafs',function () {
         return view('Admin.addShtrafs');
     });
+    Route::post('/startGame', 'AdminController@startGame');
     Route::post('/stopGame', 'AdminController@stopGame');
 });

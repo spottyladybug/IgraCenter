@@ -12,6 +12,9 @@ class PlayersController extends Controller
 {
     public function getEnigma(Request $request)
     {
+        if (!Settings::where('name', 'start')->exists()){
+            return response('Игра еще не началась');
+        }
         if (Settings::where('name', 'stop')->exists()){
             return response('Игра окончена');
         }

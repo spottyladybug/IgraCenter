@@ -40,7 +40,6 @@ class LoginController extends Controller
     {
         if( request( 'code' ) ) {
             $user = Socialite::driver('vkontakte')->user();
-
             $idUser = User::where('vk_id_user', $user->getId())->first();
             if (!$idUser) {
                 return response()->json('User does not exist');
@@ -50,7 +49,7 @@ class LoginController extends Controller
 
             switch ($idUser->group_user) {
                 case 1:
-                    return view('Moders.moder');
+                    return view('Moders.moder', ['avatar'=>$user->avatar, 'name'=>$user->name]);
                     break;
                 case 2:
                     return view('Players.player');

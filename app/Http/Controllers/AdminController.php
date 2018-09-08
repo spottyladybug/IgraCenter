@@ -112,4 +112,12 @@ class AdminController extends Controller
         $stop->save();
         return response('Игра остановлена');
     }
+
+    public function startGame()
+    {
+        $start = new Settings;
+        $start->name = 'start';
+        $start->save();
+        return view('Admin.admin');
+    }
 }
