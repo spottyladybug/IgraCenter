@@ -9,45 +9,68 @@
 </head>
 <body>
 Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're admin
-<h3><form method='post' action="/admin/showTable">
-    {!! csrf_field() !!}
-    <input type="submit" name="showTable" value="Таблица результатов">
-</form>
+<h3>
+    <form method='post' action="/admin/showTable">
+        {!! csrf_field() !!}
+        <input type="submit" name="showTable" value="Таблица результатов">
+    </form>
 </h3>
-<h3><form method='post' action="/admin/addEnigma">
+<h3>
+    <form method='post' action="/admin/addEnigma">
         {!! csrf_field() !!}
         <input type="submit" name="addEnigma" value="Добавить загадку">
     </form>
 </h3>
-<h3><form method='post' action="/admin/addShtrafs">
+<h3>
+    <form method='post' action="/admin/addShtrafs">
         {!! csrf_field() !!}
         <input type="submit" name="moderList" value="Добавить штрафы">
     </form>
 </h3>
-<h3><form method='post' action="/admin/addStation">
+<h3>
+    <form method='post' action="/admin/addStation">
         {!! csrf_field() !!}
         <input type="submit" name="addStation" value="Создать станцию">
     </form>
 </h3>
-<h3><form method='post' action="/admin/addModer">
+<h3>
+    <form method='post' action="/admin/addModer">
         {!! csrf_field() !!}
         <input type="submit" name="addModer" value="Добавить куратора">
     </form>
 </h3>
-<h3><form method='post' action="/admin/addTeam">
+<h3>
+    <form method='post' action="/admin/addTeam">
         {!! csrf_field() !!}
         <input type="submit" name="addTeam" value="Добавить команду">
     </form>
 </h3>
-<h3><form method='post' action="/admin/teamList">
+<h3>
+    <form method='post' action="/admin/teamList">
         {!! csrf_field() !!}
         <input type="submit" name="teamList" value="Список команд">
     </form>
 </h3>
-<h3><form method='post' action="/admin/moderList">
+<h3>
+    <form method='post' action="/admin/moderList">
         {!! csrf_field() !!}
         <input type="submit" name="moderList" value="Список кураторов">
     </form>
 </h3>
+@if (\App\Settings::where('name', 'start')->exists())
+    <h3>
+        <form method='post' action="/admin/stopGame">
+            {!! csrf_field() !!}
+            <input type="submit" name="stopGame" value="Стоп игра">
+        </form>
+    </h3>
+@else
+    <h3>
+        <form method='post' action="/admin/startGame">
+            {!! csrf_field() !!}
+            <input type="submit" name="startGame" value="Начать игру">
+        </form>
+    </h3>
+@endif
 </body>
 </html>

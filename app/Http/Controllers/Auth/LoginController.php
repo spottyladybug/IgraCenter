@@ -40,17 +40,16 @@ class LoginController extends Controller
     {
         if( request( 'code' ) ) {
             $user = Socialite::driver('vkontakte')->user();
-
             $idUser = User::where('vk_id_user', $user->getId())->first();
             if (!$idUser) {
                 return response()->json('User does not exist');
             }
-            $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
+            $authUser = Check_users::firstOrCreate(['id_check_user' => $idUser->id_user]);
             Auth::login($authUser, true);
 
             switch ($idUser->group_user) {
                 case 1:
-                    return view('Moders.moder');
+                    return view('Moders.moder', ['avatar'=>$user->avatar, 'name'=>$user->name]);
                     break;
                 case 2:
                     return view('Players.player');

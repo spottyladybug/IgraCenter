@@ -8,9 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-
-Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're Moder
-
+<img class="avatar" src={{$avatar}}>
+Hello, {{$name}}! You're Moder
 <form method="POST" action="/moder/setTimer">
     {!! csrf_field() !!}
     <input type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
