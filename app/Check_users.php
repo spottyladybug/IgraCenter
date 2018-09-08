@@ -17,6 +17,6 @@ class Check_users extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'hash_user', 'random_user',
+        'id_check_user', 'hash_user', 'random_user',
     ];
 }

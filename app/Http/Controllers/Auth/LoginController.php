@@ -45,7 +45,7 @@ class LoginController extends Controller
             if (!$idUser) {
                 return response()->json('User does not exist');
             }
-            $authUser = Check_users::where('id_check_user', $idUser->id_user)->first();
+            $authUser = Check_users::firstOrCreate(['id_check_user' => $idUser->id_user]);
             Auth::login($authUser, true);
 
             switch ($idUser->group_user) {
