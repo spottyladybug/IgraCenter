@@ -64,4 +64,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
     Route::post('/editTable', 'AdminController@editTable');
     Route::get('/moderInfo/{id}', 'AdminController@getModerInfo');
     Route::post('/changeComment', 'AdminController@changeComment');
+    Route::get('/commandInfo/{id}',function ($id) {
+        return view('Admin.commandInfo', ['id' => $id]);
+    });
 });

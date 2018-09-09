@@ -21,7 +21,7 @@
     <?php $teams = \App\Commands::all() ?>
     @foreach( $teams as $team)
         <tr>
-            <td>{{$team->name_com}}</td>
+            <td><a href="/admin/commandInfo/{{$team->id_com}}">{{$team->name_com}}</a></td>
             <td>{{\App\User::where('id_user', $team->cap_com)->value('name_user')}}</td>
         </tr>
     @endforeach
