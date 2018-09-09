@@ -61,4 +61,7 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
     });
     Route::post('/startGame', 'AdminController@startGame');
     Route::post('/stopGame', 'AdminController@stopGame');
+    Route::post('/editTable', 'AdminController@editTable');
+    Route::get('/moderInfo/{id}', 'AdminController@getModerInfo');
+    Route::post('/changeComment', 'AdminController@changeComment');
 });

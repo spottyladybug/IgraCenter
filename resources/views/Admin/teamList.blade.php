@@ -11,9 +11,21 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
 </head>
 <body>
-<?php $teams = \App\Commands::all() ?>
+<table border="3">
+    <thead style="text-align: center; font-size: 18px; color: white; background-color: #cc2255;">
+    <tr>
+        <td>Название команды</td>
+        <td>Капитан команды</td>
+    </tr>
+    <tbody style="text-align: center;">
+    <?php $teams = \App\Commands::all() ?>
     @foreach( $teams as $team)
-      <h3>{{$team->name_com}} - {{\App\User::where('id_user', $team->cap_com)->value('name_user')}}</h3>
+        <tr>
+            <td>{{$team->name_com}}</td>
+            <td>{{\App\User::where('id_user', $team->cap_com)->value('name_user')}}</td>
+        </tr>
     @endforeach
+    </tbody>
+</table>
 </body>
 </html>
