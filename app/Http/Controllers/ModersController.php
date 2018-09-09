@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use DB;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class ModersController extends Controller
 {
@@ -25,7 +26,7 @@ class ModersController extends Controller
                 'start' => $start,
                 'id_st_timer' => $id_st_timer,
                 'id_moder_timer' => $id_moder_timer]);
-        return view('Moders.stopTimer', ['id' => $timerId, 'start' => $start]);
+        return view('Moders.stopTimer', ['id' => $timerId, 'start' => $start, 'name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
     }
 
     public function stopTimer(Request $request)
@@ -43,7 +44,7 @@ class ModersController extends Controller
         $diff = $start->diff($end);
         $min = $diff->format('%i');
         $sec = $diff->format('%s');
-        return view('Moders.station', ['min' => $min, 'sec' => $sec]);
+        return view('Moders.station', ['min' => $min, 'sec' => $sec,'name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
     }
 
     public function setInfo(Request $request)
@@ -71,7 +72,6 @@ class ModersController extends Controller
                 'id_shtraf' => $id_shtraf,
                 'status_zagadka' => ($status_zagadka) ? 1 : 0,
                 'id_kur_stat' => $id_kur_stat]);
-
-        return view('Moders.moder');
+        return view('Moders.moder', ['name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Check_users;
 use App\Commands;
+use App\CommandsStations;
 use App\Players;
 use App\Settings;
 use App\Shtraf;
@@ -119,5 +120,30 @@ class AdminController extends Controller
         $start->name = 'start';
         $start->save();
         return view('Admin.admin');
+    }
+
+//    public function editTable(Request $request)
+//    {
+//        list($m, $s) = explode(':', $request->input('time'));
+//        CommandsStations::where([['id_stat_com', $request->input('id_stat')], ['id_com_stat', $request->input('id_com')]])
+//            ->update(['time_sec' => ($m * 60) + $s],
+//                ['id_shtraf' => Shtraf::where('shtraf', $request->input('fine'))->value('id_shtraf')],
+//                ['id_status_zagadka' => $request->input('enigma')]);
+//        return response('Изменения сохранены');
+//    }
+
+    public function getModerInfo($id)
+    {
+        $moder = Moders::where('id_user_moder', $id)->first();
+        $commands = CommandsStations::where('id_kur_stat', $id)->get();
+        return view('Admin.moderInfo', ['moder' => $moder, 'commands' => $commands]);
+    }
+
+    public function changeComment(Request $request)
+    {
+        Moders::where('id_user_moder', $request->input('id'))
+            ->update(['comment' => $request->input('comment')]);
+
+        return response('Комментарий изменен');
     }
 }

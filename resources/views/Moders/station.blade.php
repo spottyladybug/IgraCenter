@@ -13,7 +13,7 @@
 <body>
 <form method='post' action="/moder/setInfo">
     <h3>
-        <?php $station_id = \App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder'); ?>
+        <?php $station_id = \App\Moders::where('id_user_moder', Auth::id())->value('id_station_moder'); ?>
         Станция
         <input type="text" name="station"
                value="{{\App\Stations::where('id_station',$station_id)->value('name_station')}}" disabled><br>
@@ -37,6 +37,8 @@
                 <option value="{{$shtraf->id_shtraf}}">{{$shtraf->shtraf}}</option>
             @endforeach
         </select><br>
+        <input name='avatar' type='text' hidden value="{{$avatar}}">
+        <input name='name' type='text' hidden value="{{$name}}">
         <input type='submit' name='send' value='ОТПРАВИТЬ'>
     </h3>
 </form>
