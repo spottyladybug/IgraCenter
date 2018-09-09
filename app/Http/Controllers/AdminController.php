@@ -122,15 +122,15 @@ class AdminController extends Controller
         return view('Admin.admin');
     }
 
-    public function editTable(Request $request)
-    {
-        list($m, $s) = explode(':', $request->input('time'));
-        CommandsStations::where([['id_stat_com', $request->input('id_stat')], ['id_com_stat', $request->input('id_com')]])
-            ->update(['time_sec' => ($m * 60) + $s],
-                ['id_shtraf' => Shtraf::where('shtraf', $request->input('fine'))->value('id_shtraf')],
-                ['id_status_zagadka' => $request->input('enigma')]);
-        return response('Изменения сохранены');
-    }
+//    public function editTable(Request $request)
+//    {
+//        list($m, $s) = explode(':', $request->input('time'));
+//        CommandsStations::where([['id_stat_com', $request->input('id_stat')], ['id_com_stat', $request->input('id_com')]])
+//            ->update(['time_sec' => ($m * 60) + $s],
+//                ['id_shtraf' => Shtraf::where('shtraf', $request->input('fine'))->value('id_shtraf')],
+//                ['id_status_zagadka' => $request->input('enigma')]);
+//        return response('Изменения сохранены');
+//    }
 
     public function getModerInfo($id)
     {

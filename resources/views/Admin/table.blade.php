@@ -1,5 +1,5 @@
 <h1>Табличка участников</h1>
-<form method='post' action="/admin/editTable">
+{{--<form method='post' action="/admin/editTable">--}}
     <table border="3">
         <thead style="text-align: center; font-size: 18px;  color: white; background-color: #0056b3;">
         <tr>
@@ -31,9 +31,6 @@
                 <?php $count = \App\CommandsStations::count(); $stCount = 0;?>
                 @for($num = 0; $num !== $count; $num++)
                     @if ($commands[$num]->id_com_stat == $com->id_com)
-
-                        <input name='id_com' type='text' hidden value="{{$com->id_com}}">
-                        <input name='id_stat' type='text' hidden value="{{$commands[$num]->id_stat_com}}">
                         @component('Admin.comRow',
                         [ 'time' => $commands[$num]->time_sec,
                         'enigma' => $commands[$num]->status_zagadka,
@@ -64,7 +61,7 @@
             </tr>
         @endforeach
     </table>
-    <h3>
-        <input type='submit' name='send' value='Сохранить изменения'>
-    </h3>
-</form>
+    {{--<h3>--}}
+        {{--<input type='submit' name='send' value='Сохранить изменения'>--}}
+    {{--</h3>--}}
+{{--</form>--}}
