@@ -15,6 +15,7 @@ class CreateTableRazTable extends Migration
     {
         Schema::create('table_raz', function (Blueprint $table) {
             $table->increments('team_id');
+            $table->integer('COL 1');
             $table->integer('COL 2');
             $table->integer('COL 3');
             $table->integer('COL 4');
@@ -25,7 +26,6 @@ class CreateTableRazTable extends Migration
             $table->integer('COL 9');
             $table->integer('COL 10');
             $table->integer('COL 11');
-            $table->integer('COL 12');
         });
 
         Schema::table('table_raz', function (Blueprint $table) {
