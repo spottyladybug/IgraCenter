@@ -13,8 +13,6 @@ Hello, {{$name}}! You're Moder
 <form method="POST" action="/moder/setTimer">
     {!! csrf_field() !!}
     <input type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
-    <input name='id_st_timer' type='text' hidden value="{{\App\Moders::where('id_user_moder',Auth::id())->value('id_station_moder')}}">
-    <input name='id_moder_timer' type='text' hidden value="{{Auth::id()}}">
     <input name='avatar' type='text' hidden value="{{$avatar}}">
     <input name='name' type='text' hidden value="{{$name}}">
 </form>

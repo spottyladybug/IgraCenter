@@ -25,8 +25,7 @@
 <form method="POST" action="/moder/stopTimer">
     {!! csrf_field() !!}
     <input type="submit" name="startbyn" value="Остановить таймер">
-    <input name='start' type='text' hidden value="{{$start}}">
-    <input name='id' type='text' hidden value="{{$id}}">
+    <input name='id' type='text' hidden value="{{$timer->id_timer}}">
     <input name='avatar' type='text' hidden value="{{$avatar}}">
     <input name='name' type='text' hidden value="{{$name}}">
 </form>

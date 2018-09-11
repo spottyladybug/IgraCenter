@@ -28,17 +28,17 @@
                 <td rowspan="2">
                     {{$com->name_com}}
                 </td>
-                <?php $count = \App\CommandsStations::count(); $stCount = 0;?>
-                @for($num = 0; $num !== $count; $num++)
-                    @if ($commands[$num]->id_com_stat == $com->id_com)
+                <?php $stCount=0 ?>
+                @foreach($commands as $command)
+                    @if ($command->id_com_stat == $com->id_com)
                         @component('Admin.comRow',
-                        [ 'time' => $commands[$num]->time_sec,
-                        'enigma' => $commands[$num]->status_zagadka,
-                        'fine'=>$commands[$num]->shtraf])
+                        [ 'time' => $command->time_sec,
+                        'enigma' => $command->status_zagadka,
+                        'fine'=>$command->shtraf])
                         @endcomponent
-                        <?php $sum += $commands[$num]->sum; $stCount++; $kur[] = $commands[$num]->id_kur_stat?>
+                        <?php $sum += $command->sum; $stCount++; $kur[] = $command->moder?>
                     @endif
-                @endfor
+                @endforeach
                 <?php $statCount = \App\Stations::count(); ?>
                 @if ($stCount < $statCount)
                     @for($c = $stCount; $c!== $statCount; $c++)
@@ -51,7 +51,7 @@
             </tr>
             <tr style="text-align: center; font-size: 16px;">
                 @foreach($kur as $moder)
-                    <td colspan="3">Куратор: {{\App\User::where('id_user', $moder)->value('name_user')}}</td>
+                    <td colspan="3">Куратор: {{$moder}}</td>
                 @endforeach
                 @if ($stCount < $statCount)
                     @for($c = $stCount; $c!== $statCount; $c++)
