@@ -32,8 +32,10 @@ Route::group(['prefix'=>'moder'], function() {
 
 Route::group(['prefix'=>'admin', 'middleware' => ['auth']], function() {
     //Admin routes
-    Route::post('/showTable','AdminController@showTable');
-    Route::post('/addModer',function () {
+    Route::get('/showTable','AdminController@showTable')->name('admin.table');
+    Route::get('/editTable/{id}','AdminController@editTable')->name('admin.edittable');
+    Route::patch('/updateTable/{id}','AdminController@updateTable')->name('admin.updatetable');
+    Route::get('/addModer',function () {
         return view('Admin.addModer');
     });
     Route::post('/addNewModer','AdminController@addModer');

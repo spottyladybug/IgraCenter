@@ -17,7 +17,7 @@ class CreateCommandsStationsTable extends Migration
             $table->integer('id_stat_com');
             $table->integer('id_com_stat');
             $table->integer('time_sec');
-            $table->integer('id_shtraf');
+            $table->integer('id_shtraf')->nullable();
             $table->boolean('status_zagadka');
             $table->integer('id_kur_stat');
             $table->primary(['id_stat_com', 'id_com_stat']);

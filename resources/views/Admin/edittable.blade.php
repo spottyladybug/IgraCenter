@@ -1,5 +1,7 @@
-<h1>Табличка участников</h1>
-{{--<form method='post' action="/admin/editTable">--}}
+<h1>Редактирование</h1>
+<form method='post' action="{{route('admin.updatetable', ['id'=>$team_id])}}">
+    {{ csrf_field() }}    
+    <input type="hidden" name="_method" value="patch">
     <table border="3">
         <thead style="text-align: center; font-size: 18px;  color: white; background-color: #0056b3;">
         <tr>
@@ -11,7 +13,6 @@
                 <td colspan="3">Станция № {{$numb}}</td>
             @endfor
             <td rowspan="2">Общая сумма</td>
-            <td rowspan="2">Действие</td>
         </tr>
         <tr>
             @foreach($stations as $station)
@@ -22,8 +23,7 @@
         </tr>
         </thead>
 
-        <?php $coms = \App\Commands::all();?>
-        @foreach ($coms as $com)
+        <?php $com = \App\Commands::find( $team_id );?>
             <?php $sum = 0; $kur = array();?>
             <tr id='{{$com->id_com}}' style='text-align: center; font-size: 16px;'>
                 <td rowspan="2">
@@ -32,7 +32,7 @@
                 <?php $stCount=0 ?>
                 @foreach($commands as $command)
                     @if ($command->id_com_stat == $com->id_com)
-                        @component('Admin.comRow',
+                        @component('Admin.editcomRow',
                         [ 'time' => $command->time_sec,
                         'enigma' => $command->status_zagadka,
                         'fine'=>$command->shtraf])
@@ -59,13 +59,9 @@
                         <td colspan="3"></td>
                     @endfor
                 @endif
-                <td>
-                    <a href="{{route('admin.edittable', ['id' => $com->id_com])}}">Редактировать</a>
-                </td>
             </tr>
-        @endforeach
     </table>
-    {{--<h3>--}}
-        {{--<input type='submit' name='send' value='Сохранить изменения'>--}}
-    {{--</h3>--}}
-{{--</form>--}}
+    <h3>
+        <input type='submit' name='send' value='Сохранить изменения'>
+    </h3>
+</form>

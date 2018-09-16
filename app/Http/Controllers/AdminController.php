@@ -30,6 +30,31 @@ class AdminController extends Controller
         return view('Admin.table', ['commands' => $result]);
     }
 
+    public function editTable($id) {
+        $result = CommandsStations::all()->where('id_com_stat', $id);
+
+        foreach ($result as $value) {
+            $value->shtraf = Shtraf::where('id_shtraf', $value->id_shtraf)->value('shtraf');
+            $value->sum = $value->time_sec + $value->shtraf - 5 * $value->status_zagadka;
+            $value->moder = User::where('id_user', $value->id_kur_stat)->value('name_user');
+        }
+
+        // var_dump($result);
+
+        return view('Admin.edittable', ['commands' => $result, 'team_id' => $id]);
+    }
+
+    public function updateTable(Request $request, $id) {
+        $comstat = CommandsStations::all()->where('id_com_stat', $id)->first();
+        $time = explode( ':', $request->get('time_sec') );
+        $comstat->time_sec = (int)$time[0] * 60 + (int)$time[1];
+        $comstat->id_shtraf = $request->get('id_shtraf');
+        $comstat->status_zagadka = $request->get('status_zagadka');
+        
+        $comstat->save();
+        return redirect()->route('admin.table');
+    }
+
     public function addNewModer(Request $request)
     {
         if (User::where('vk_id_user', $request->input('id'))->first()) {
