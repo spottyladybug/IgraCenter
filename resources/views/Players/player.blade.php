@@ -1,26 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-
-Hello, {{\App\User::where('id_user', Auth::id())->value('name_user')}}! You're Player
-
+@include('parts/head')
 <?php $commandId = \App\Players::where('id_user_player', Auth::id())->value('team_player') ?>
+  <div class="app">
+    <main class="main">
+      <div class="main__text">
+        <span class="hello">Привет, {{\App\User::where('id_user', Auth::id())->value('name_user')}}</span>
+        <span class="player-status">Вы - игрок</span>
+        <span class="player-status">Ваша команда: {{\App\Commands::where('id_com',$commandId)->value('name_com')}}</span>
+        <span class="player-status">Номер вашей команды: {{$commandId}}</span>
+      </div>
+      <div class="puzzle" id="puzzle">
+      @yield('Players.enigma')
+      </div>
+      <form method="POST" action="/player/getEnigma" class="gagarin">
+        {!! csrf_field() !!}
+        <input type='text' name='command_id' hidden value={{$commandId}}>
+        <button class="gagarin__button" onclick="puzzle()">Получить загадку</button>
+      </form>
+    </main>
 
-<h2> Ваша команда: {{\App\Commands::where('id_com',$commandId)->value('name_com')}}</h2>
-<h2> Номер вашей команды: {{$commandId}}</h2>
-<br>
-<form method="POST" action="/player/getEnigma">
-    {!! csrf_field() !!}
-    <input type="submit" name="getEnigma" value="Получить загадку">
-    <input type='text' name='command_id' hidden value={{$commandId}}>
-</form>
-@yield('Players.enigma')
-</body>
-</html>
+
+  </div><!-- end app -->
+@include('parts/foot')

@@ -48,15 +48,24 @@ class LoginController extends Controller
                 $idUser->name_user = $user->getName();
                 $idUser->save();
             }
+
             $authUser = Check_users::firstOrCreate(['id_check_user' => $idUser->id_user]);
             Auth::login($authUser, true);
 
             switch ($idUser->group_user) {
                 case 1:
-                    return redirect()->route('moder.home', ['id' => $idUser->id_user]);
+                    if( \App\Settings::where('name', 'stop')->exists() ) {
+                        return 'Игра окончена';
+                    } else {
+                        return redirect()->route('moder.home', ['id' => $idUser->id_user]);
+                    }
                     break;
                 case 2:
-                    return redirect()->route('players.home');
+                    if( \App\Settings::where('name', 'stop')->exists() ) {
+                        return 'Игра окончена';
+                    } else {
+                        return redirect()->route('players.home');
+                    }
                     break;
                 case 100:
                     return redirect()->route('admin.home');

@@ -12,7 +12,7 @@
       <div class="gagarin">
         <form method="POST" action="/moder/setTimer">
             {!! csrf_field() !!}
-            <input class="gagarin__button_moder" type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
+            <input class="gagarin__button_moder" type="submit" name="startbyn" value="START!">
         </form>
       </div>
 

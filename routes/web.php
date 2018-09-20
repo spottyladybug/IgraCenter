@@ -71,8 +71,8 @@ Route::group(['prefix'=>'admin', 'middleware' => ['auth', 'Admin']], function() 
     Route::get('/addShtrafs',function () {
         return view('admin.addShtrafs');
     })->name('admin.addshtrafs');
-    Route::post('/startGame', 'AdminController@startGame')->name('admin.startgame');
-    Route::post('/stopGame', 'AdminController@stopGame')->name('admin.stopgame');
+    Route::get('/startGame', 'AdminController@startGame')->name('admin.startgame');
+    Route::get('/stopGame', 'AdminController@stopGame')->name('admin.stopgame');
 //    Route::post('/editTable', 'AdminController@editTable');
     Route::get('/moderInfo/{id}', 'AdminController@getModerInfo')->name('admin.moderinfo');
     Route::post('/changeComment', 'AdminController@changeComment')->name('admin.changecomment');

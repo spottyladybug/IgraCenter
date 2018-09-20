@@ -77,6 +77,7 @@ class ModersController extends Controller
         $comStat->id_kur_stat = Auth::id();
         $comStat->save();
 
-        return view('Moders.moder', ['name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
+        // return view('Moders.moder', ['name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
+        return redirect()->route('moder.home', ['id' => Moders::where('id_user_moder', Auth::id())->value('id_user_moder')]);
     }
 }

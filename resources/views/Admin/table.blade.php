@@ -33,7 +33,7 @@
                       <?php $stCount=0 ?>
                       @foreach($commands as $command)
                         @if ($command->id_com_stat == $com->id_com)
-                            @component('Admin.comRow',
+                            @component('admin.comRow',
                             [ 'time' => $command->time_sec,
                             'enigma' => $command->status_zagadka,
                             'fine'=>$command->shtraf])

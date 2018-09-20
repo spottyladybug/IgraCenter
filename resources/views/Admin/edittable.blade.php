@@ -35,7 +35,7 @@
                       <?php $stCount=0 ?>
                       @foreach($commands as $command)
                         @if ($command->id_com_stat == $com->id_com)
-                            @component('Admin.editcomRow',
+                            @component('admin.editcomRow',
                             [ 'time' => $command->time_sec,
                             'enigma' => $command->status_zagadka,
                             'fine'=>$command->shtraf,

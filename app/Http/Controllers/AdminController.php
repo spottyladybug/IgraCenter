@@ -27,7 +27,7 @@ class AdminController extends Controller
             $value->moder = User::where('id_user', $value->id_kur_stat)->value('name_user');
         }
 
-        return view('Admin.table', ['commands' => $result]);
+        return view('admin.table', ['commands' => $result]);
     }
 
     public function editTable($id) {
@@ -41,7 +41,7 @@ class AdminController extends Controller
 
         // var_dump($result);
 
-        return view('Admin.edittable', ['commands' => $result, 'team_id' => $id]);
+        return view('admin.edittable', ['commands' => $result, 'team_id' => $id]);
     }
 
     public function updateTable(Request $request, $id) {
@@ -135,7 +135,7 @@ class AdminController extends Controller
 
     public function stopGame()
     {
-        $stop = new Settings;
+        $stop = Settings::all()->first();
         $stop->name = 'stop';
         $stop->save();
         return response('Игра остановлена');
@@ -143,10 +143,10 @@ class AdminController extends Controller
 
     public function startGame()
     {
-        $start = new Settings;
+        $start = Settings::all()->first();
         $start->name = 'start';
         $start->save();
-        return view('Admin.admin');
+        return redirect()->route('admin.home');
     }
 
 //    public function editTable(Request $request)
@@ -163,7 +163,7 @@ class AdminController extends Controller
     {
         $moder = Moders::where('id_user_moder', $id)->first();
         $commands = CommandsStations::where('id_kur_stat', $id)->get();
-        return view('Admin.moderInfo', ['moder' => $moder, 'commands' => $commands]);
+        return view('admin.moderInfo', ['moder' => $moder, 'commands' => $commands]);
     }
 
     public function changeComment(Request $request)
