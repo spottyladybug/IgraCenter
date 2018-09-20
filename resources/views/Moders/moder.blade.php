@@ -1,20 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<img class="avatar" src={{$avatar}}>
-Hello, {{$name}}! You're Moder
-<form method="POST" action="/moder/setTimer">
-    {!! csrf_field() !!}
-    <input type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
-    <input name='avatar' type='text' hidden value="{{$avatar}}">
-    <input name='name' type='text' hidden value="{{$name}}">
-</form>
-</body>
-</html>
+@include('parts/head')
+  <div class="app">
+    <main class="main">
+      <div class="main__text">
+          <div class="img-moder">
+            <img class="avatar" src={{$avatar}}>
+          </div>
+      </div>
+        <span class="moder-status">Куратор станции {{$station_name}}</span>
+        <span class="moder-name">{{$name}}!</span>
+
+      <div class="gagarin">
+        <form method="POST" action="/moder/setTimer">
+            {!! csrf_field() !!}
+            <input class="gagarin__button_moder" type="submit" name="startbyn" value="ПРИШЛА КОМАНДА!">
+        </form>
+      </div>
+
+    </main>
+
+
+  </div><!-- end app -->
+@include('parts/foot')

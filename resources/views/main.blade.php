@@ -1,16 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<form method="GET" action="login/vkontakte">
-    {!! csrf_field() !!}
-    <input type="submit" name="entrance" value="ВОЙТИ">
-</form>
-</body>
-</html>
+@include('parts/head')
+  <div class="app">
+    <header class="header">
+      <img src="images/logo_ic.png">
+    </header>
+
+    <main class="main">
+      <div class="main__text">
+        <span class="best-phrase">Самое масштабное мероприятие для первокурсников</span>
+        <span class="call-to-action">Будь с нами!</span>
+        <span class="call-to-action">Будь в центре!</span>
+      </div>
+      <div class="gagarin">
+        <a href="{{route('app.login')}}" class="gagarin__button">Поехали!</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <img src="images/logo_spb.png">
+    </footer>
+
+  </div><!-- end app -->
+  @include('parts/foot')

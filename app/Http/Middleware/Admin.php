@@ -20,10 +20,14 @@ class Admin
             return $next($request);
         }
         elseif (Auth::check() && Auth::user()->group_user == 1) { // is moder
-            return view('Moders.moder');
+            // return view('Moders.moder');
+            return redirect()->route('moder.home');
         }
         elseif(Auth::check() && Auth::user()->group_user == 2) {
-            return view('Players.player');
+            // return view('Players.player');
+            return redirect()->route('players.home');
+        } else {
+            return redirect()->route('app.main');
         }
     }
 }

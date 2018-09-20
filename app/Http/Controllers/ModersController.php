@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CommandsStations;
 use App\Moders;
+use App\Stations;
 use App\Settings;
 use App\Timer;
 use Illuminate\Http\Request;
@@ -25,6 +26,17 @@ class ModersController extends Controller
                 'id_moder_timer' => Auth::id()]);
 
         return view('Moders.stopTimer', ['timer' => $timer, 'name' => $request->input('name'), 'avatar' => $request->input('avatar')]);
+    }
+
+    public function moderHome( \App\User $user ) {
+        $moder = Moders::all()->where('id_user_moder', $user->id_user)->first();
+        if( isset($moder->id_station_moder) && $moder->id_station_moder != null ) {
+            $station = Stations::find( $moder->id_station_moder);
+            $station_name = $station->name_station;
+        } else {
+            $station_name = null;            
+        }
+        return view('Moders.moder', ['avatar'=>$user->avatar, 'name'=>$user->name_user, 'station_name' => $station_name]);
     }
 
     public function stopTimer(Request $request)

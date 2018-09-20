@@ -1,33 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script language="JavaScript" type="text/javascript">
-        function init() {
-            sec = 0;
-            setInterval(tick, 1000);
-        }
-
-        function tick() {
-            sec++;
-            document.getElementById("timer").childNodes[0].nodeValue = sec;
-        }
-    </script>
-    <title>Document</title>
-</head>
-<body>
-Секундомер:
-<div id="timer">0</div>
-<script>init();</script>
-<form method="POST" action="/moder/stopTimer">
-    {!! csrf_field() !!}
-    <input type="submit" name="startbyn" value="Остановить таймер">
-    <input name='id' type='text' hidden value="{{$timer->id_timer}}">
-    <input name='avatar' type='text' hidden value="{{$avatar}}">
-    <input name='name' type='text' hidden value="{{$name}}">
-</form>
-</body>
-</html>
+@include('parts/head')
+    <div class="app">
+        <main class="main">
+            <div class="main__text">
+                <span class="call-to-go">Прошло <i class="far fa-clock"></i></span>
+            </div>
+            <div class="time"><p id="timer">0:00:00</p></div>
+            <div class="gagarin">
+                <form method="POST" action="/moder/stopTimer">
+                    {!! csrf_field() !!}
+                    <input name='id' type='text' hidden value="{{$timer->id_timer}}">
+                    <input name='avatar' type='text' hidden value="{{$avatar}}">
+                    <input name='name' type='text' hidden value="{{$name}}">
+                    <button type="button" class="gagarin__button">Старт / Стоп</button>
+                    <button type="submit" class="gagarin__button_stop">Закончить</button>
+                </form>
+            </div>
+        </main>
+    </div><!-- end app -->
+@include('parts/foot')

@@ -1,0 +1,15 @@
+@import 'base/fonts';
+
+@import 'vendor/normalize';
+
+@import 'base/root',
+        'base/reset';
+
+@import 'layouts/app',
+        'layouts/header',
+        'layouts/main',
+        'layouts/footer';
+
+@import 'components/gagarin';
+
+@import 'pages/main';

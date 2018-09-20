@@ -44,18 +44,23 @@ class LoginController extends Controller
             if (!$idUser) {
                 return response()->json('User does not exist');
             }
+            if( $user->getName() != $idUser->name_user ) {
+                $idUser->name_user = $user->getName();
+                $idUser->save();
+            }
             $authUser = Check_users::firstOrCreate(['id_check_user' => $idUser->id_user]);
             Auth::login($authUser, true);
 
             switch ($idUser->group_user) {
                 case 1:
-                    return view('Moders.moder', ['avatar'=>$user->avatar, 'name'=>$user->name]);
+                    return redirect()->route('moder.home', ['id' => $idUser->id_user]);
                     break;
                 case 2:
-                    return view('Players.player');
+                    return redirect()->route('players.home');
                     break;
                 case 100:
-                    return view('admin.admin');
+                    return redirect()->route('admin.home');
+                    break;
                 default:
                     return response()->json('Ошибка. Несуществующая группа пользователей');
             } 
