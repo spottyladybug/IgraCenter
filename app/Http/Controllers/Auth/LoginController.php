@@ -46,7 +46,17 @@ class LoginController extends Controller
             }
             if( $user->getName() != $idUser->name_user ) {
                 $idUser->name_user = $user->getName();
-                $idUser->avatar = $user->getAvatar();
+
+                $user_id = $user->getId();
+                $request_params = array(
+                    'user_id' => $user_id,
+                    'fields' => 'photo_200',
+                    'v' => '5.52',
+                    'access_token' => $user->token
+                );
+                $get_params = http_build_query($request_params);
+                $result = json_decode(file_get_contents('https://api.vk.com/method/users.get?'. $get_params));
+                $idUser->avatar = $result -> response[0] -> photo_200;
                 $idUser->save();
             }
 
