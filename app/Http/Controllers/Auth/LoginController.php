@@ -46,6 +46,7 @@ class LoginController extends Controller
             }
             if( $user->getName() != $idUser->name_user ) {
                 $idUser->name_user = $user->getName();
+                $idUser->avatar = $user->getAvatar();
                 $idUser->save();
             }
 
