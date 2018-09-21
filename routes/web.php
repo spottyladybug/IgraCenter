@@ -33,7 +33,7 @@ Route::group(['prefix'=>'moder', 'middleware' => ['auth', 'Moder']], function() 
     Route::post('/setInfo', 'ModersController@setInfo');
 });
 
-    Route::group(['prefix'=>'player'], function() {
+Route::group(['prefix'=>'player'], function() {
     Route::post('/getEnigma', 'PlayersController@getEnigma');
 });
 

@@ -44,7 +44,7 @@ class LoginController extends Controller
             if (!$idUser) {
                 return response()->json('User does not exist');
             }
-            if( $user->getName() != $idUser->name_user ) {
+            if( $user->getName() != $idUser->name_user || $idUser->avatar == null ) {
                 $idUser->name_user = $user->getName();
 
                 $user_id = $user->getId();
@@ -56,7 +56,7 @@ class LoginController extends Controller
                 );
                 $get_params = http_build_query($request_params);
                 $result = json_decode(file_get_contents('https://api.vk.com/method/users.get?'. $get_params));
-                $idUser->avatar = $result -> response[0] -> photo_200;
+                $idUser->avatar = $result->response[0]->photo_200;
                 $idUser->save();
             }
 

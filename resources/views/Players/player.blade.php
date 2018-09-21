@@ -14,7 +14,7 @@
       <form method="POST" action="/player/getEnigma" class="gagarin">
         {!! csrf_field() !!}
         <input type='text' name='command_id' hidden value={{$commandId}}>
-        <button class="gagarin__button" onclick="puzzle()">Получить загадку</button>
+        <button class="gagarin__button">Получить загадку</button>
       </form>
     </main>
 
