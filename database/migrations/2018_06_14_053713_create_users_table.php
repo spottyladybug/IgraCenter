@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('name_user');
             $table->string('vk_id_user');
             $table->integer('group_user');
-            $table->text('avatar');
         });
     }
 

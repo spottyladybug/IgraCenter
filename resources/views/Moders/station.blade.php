@@ -16,7 +16,7 @@
           <?php $commands = \App\Commands::all() ?>
           <select name='id_com_stat'>
             @foreach( $commands as $command)
-                <option value="{{$command->id_com}}">{{$command->name_com}}</option>
+                <option value="{{$command->id_com}}">{{$command->id_com}} - {{$command->name_com}}</option>
             @endforeach
           </select>
         </div>

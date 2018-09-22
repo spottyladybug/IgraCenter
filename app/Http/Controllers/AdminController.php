@@ -27,6 +27,8 @@ class AdminController extends Controller
             $value->moder = User::where('id_user', $value->id_kur_stat)->value('name_user');
         }
 
+        // array_pop($result);
+
         return view('admin.table', ['commands' => $result]);
     }
 
@@ -45,13 +47,17 @@ class AdminController extends Controller
     }
 
     public function updateTable(Request $request, $id) {
-        $comstat = CommandsStations::all()->where('id_com_stat', $id)->first();
-        $time = explode( ':', $request->get('time_sec') );
-        $comstat->time_sec = (int)$time[0] * 60 + (int)$time[1];
-        $comstat->id_shtraf = $request->get('id_shtraf');
-        $comstat->status_zagadka = $request->get('status_zagadka');
-        
-        $comstat->save();
+        $comstat = CommandsStations::all()->where('id_com_stat', $id);
+        $edittable = $request->get('edittable');
+        foreach($edittable as $station => $table) {
+            $statcom = CommandsStations::all()->where('id_stat_com', $station)->first();
+            $time = explode( ':', $table['time_sec'] );
+            $statcom->time_sec = (int)$time[0] * 60 + (int)$time[1];
+            $statcom->id_shtraf = $table['id_shtraf'];
+            $statcom->status_zagadka = $table['status_zagadka'];
+            $statcom->save();
+        }
+
         return redirect()->route('admin.table');
     }
 

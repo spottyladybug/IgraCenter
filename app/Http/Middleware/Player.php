@@ -16,18 +16,22 @@ class Player
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->group_user == 100) { // is admin
-            return redirect()->route('admin.home');
-        }
-        elseif (Auth::check() && Auth::user()->group_user == 1) { // is moder
-            // return view('Moders.moder');
-            return redirect()->route('moder.home');
-        }
-        elseif(Auth::check() && Auth::user()->group_user == 2) {
-            // return view('Players.player');
-            return $next($request);
+        if( \App\Settings::where('name', 'start')->exists() ) {
+            if (Auth::check() && Auth::user()->group_user == 100) { // is admin
+                return redirect()->route('admin.home');
+            }
+            elseif (Auth::check() && Auth::user()->group_user == 1) { // is moder
+                // return view('Moders.moder');
+                return redirect()->route('moder.home');
+            }
+            elseif(Auth::check() && Auth::user()->group_user == 2) {
+                // return view('Players.player');
+                return $next($request);
+            } else {
+                return redirect()->route('app.main');
+            }
         } else {
-            return redirect()->route('app.main');
+            return view('error', ['error' => 'Игра остановлена или еще не началась']);
         }
     }
 }

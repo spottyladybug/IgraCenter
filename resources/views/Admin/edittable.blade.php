@@ -7,65 +7,45 @@
         {{ csrf_field() }}    
         <input type="hidden" name="_method" value="patch">
           <table>
-              <thead>
-                  <tr>
-                      <td rowspan="2">Название команды</td>
-                      <?php $stations = \App\Stations::all(); ?>
-                      @for($numb=1;$numb<=$stations->count();$numb++)
-                        <td colspan="3">Станция № {{$numb}}</td>
-                      @endfor
-                      <td>Сумма</td>
-                  </tr>
-                  <tr>
-                    @foreach($stations as $station)
-                      <td><img src="/img/time.png" alt=""></td>
-                      <td><img src="/img/help.png" alt=""></td>
-                      <td><img src="/img/stop.png" alt=""></td>
-                    @endforeach
-                  </tr>
-                  <tr>
-                      <td colspan="100%" class="table-bg"></td>
-                  </tr>
-              </thead>
-              <tbody>
-                  <?php $com = \App\Commands::find( $team_id );?>
-                  <?php $sum = 0; $kur = array();?>
-                  <tr>
-                      <td rowspan="2"><a href="{{route('admin.edittable', ['id' => $com->id_com])}}">{{$com->name_com}}</a></td>
-                      <?php $stCount=0 ?>
-                      @foreach($commands as $command)
-                        @if ($command->id_com_stat == $com->id_com)
+            <thead>
+                <tr>
+                    <td colspan="1">Название команды</td>
+                    <?php $com = \App\Commands::find( $team_id );?>
+                    <td colspan="3">{{$com->name_com}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $stations = \App\Stations::all(); ?>
+                @for($numb=1;$numb<=$stations->count()-1;$numb++)
+                <tr>
+                    <td colspan="1" rowspan="3">Станция <?= \App\Stations::all()->where('id_station', $numb)->first()->name_station; ?></td>
+                    <td colspan="1"><img src="/img/time.png" alt=""></td>
+                    <td colspan="1"><img src="/img/help.png" alt=""></td>
+                    <td colspan="1"><img src="/img/stop.png" alt=""></td>
+                </tr>
+                <tr>
+                    <?php $sum = 0; $kur = array(); $stCount=0 ?>
+                    @foreach($commands as $command)
+                        @if( $command->id_stat_com == $numb)
                             @component('admin.editcomRow',
                             [ 'time' => $command->time_sec,
                             'enigma' => $command->status_zagadka,
                             'fine'=>$command->shtraf,
-                            'station_id'=> $command->id_com_stat])
+                            'station_id'=> $numb])
                             @endcomponent
                             <?php $sum += $command->sum; $stCount++; $kur[] = $command->moder?>
                         @endif
-                      @endforeach
-                      <?php $statCount = \App\Stations::count(); ?>
-                      @if ($stCount < $statCount)
-                        @for($c = $stCount; $c!== $statCount; $c++)
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        @endfor
-                      @endif
-                      <td>{{$sum}}</td>
-                  </tr>
-                  <tr>
+                    @endforeach
+                </tr>
+                <tr>
                     @foreach($kur as $moder)
                         <td colspan="3">Куратор: {{$moder}}</td>
                     @endforeach
-                    @if ($stCount < $statCount)
-                        @for($c = $stCount; $c!== $statCount; $c++)
-                        <td colspan="3"></td>
-                        @endfor
-                    @endif
-                  </tr>
-              </tbody>
+                </tr>
+                @endfor
+            </tbody>
           </table>
+
           <input type='submit' name='send' value='Сохранить изменения'>
         </form>
     </main>

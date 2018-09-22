@@ -42,7 +42,8 @@ class LoginController extends Controller
             $user = Socialite::driver('vkontakte')->user();
             $idUser = User::where('vk_id_user', $user->getId())->first();
             if (!$idUser) {
-                return response()->json('User does not exist');
+                // return response()->json('User does not exist');
+                return view('error', ['error' => 'Вас нет в базе пользователей']);
             }
             if( $user->getName() != $idUser->name_user || $idUser->avatar == null ) {
                 $idUser->name_user = $user->getName();
@@ -66,14 +67,14 @@ class LoginController extends Controller
             switch ($idUser->group_user) {
                 case 1:
                     if( \App\Settings::where('name', 'stop')->exists() ) {
-                        return 'Игра окончена';
+                        return view('error', ['error' => 'Игра остановлена или еще не началась']);
                     } else {
                         return redirect()->route('moder.home', ['id' => $idUser->id_user]);
                     }
                     break;
                 case 2:
                     if( \App\Settings::where('name', 'stop')->exists() ) {
-                        return 'Игра окончена';
+                        return view('error', ['error' => 'Игра остановлена или еще не началась']);
                     } else {
                         return redirect()->route('players.home');
                     }
@@ -82,7 +83,8 @@ class LoginController extends Controller
                     return redirect()->route('admin.home');
                     break;
                 default:
-                    return response()->json('Ошибка. Несуществующая группа пользователей');
+                    // return response()->json('Ошибка. Несуществующая группа пользователей');
+                    return view('error', ['error' => 'Ошибка. Несуществующая группа пользователей']);
             } 
         } else {
             return view('main');

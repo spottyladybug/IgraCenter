@@ -365,11 +365,10 @@ textarea:focus {
   text-align: center;
   display: grid;
   grid-template-areas: "header" "main" "footer";
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 340px auto; }
+  grid-template-columns: 1fr;}
 
 .header {
-  padding: 30px 20px 100px 20px;
+  padding: 30px 20px 0px 20px;
   max-width: 590px;
   margin: 0 auto; }
 
@@ -391,7 +390,7 @@ textarea:focus {
   padding: 0 5px; }
 
 .footer {
-  padding: 30px 20px;
+  padding: 0px 20px 20px 20px;
   max-width: 590px;
   margin: 0 auto;
   display: flex;
@@ -404,7 +403,7 @@ textarea:focus {
   border-radius: 20px;
   padding: 10px;
   color: #fff;
-  font-size: 2rem;
+  font-size: 28px;
   letter-spacing: 1px; }
 
 .gagarin__button_stop {
@@ -414,7 +413,7 @@ textarea:focus {
   border-radius: 20px;
   padding: 10px;
   color: #fff;
-  font-size: 2rem;
+  font-size: 28px;
   letter-spacing: 4px; }
 
   .gagarin__button_moder {
@@ -424,7 +423,7 @@ textarea:focus {
   border-radius: 20px;
   padding: 10px;
   color: #fff;
-  font-size: 2rem;
+  font-size: 28px;
   letter-spacing: 4px; }
 
 .main__text {
@@ -433,24 +432,24 @@ textarea:focus {
 
 .best-phrase {
   margin-bottom: 20px;
-  font-size: .875rem; }
+  font-size: 16px; }
 .moder-name {
   margin-bottom: 20px;
-  font-size: .875rem; }
+  font-size: 16px; }
   .moder-status {
   margin: 20px 0;
-  font-size: .875rem; }
+  font-size: 16px; }
 
 .call-to-action {
-  font-size: 2rem;
+  font-size: 28px;
   margin-bottom: 10px; }
 
 .time{
-  font-size: 2rem;
+  font-size: 28px;
   font-weight: normal;
 }
 .call-to-go {
-  font-size: 2rem;
+  font-size: 28px;
   margin-top: 40px; }
 .hello{
   margin-top: 50px;
@@ -464,7 +463,6 @@ textarea:focus {
   width: 95%;
   padding: 20px;
   margin: 20px 20px;
-  /* display: none; */
 }
 
 .text-puzzle{
@@ -492,6 +490,10 @@ textarea:focus {
 .form-part input{
   float: right;
   margin-left: 10px;
+}
+
+.form-part select {
+  width: 226px;
 }
 
 .form-part [type=checkbox]{
