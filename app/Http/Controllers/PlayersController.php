@@ -14,11 +14,8 @@ class PlayersController extends Controller
 {
     public function getEnigma(Request $request)
     {
-        if (!Settings::where('name', 'start')->exists()){
-            return response('Игра еще не началась');
-        }
-        if (Settings::where('name', 'stop')->exists()){
-            return response('Игра окончена');
+        if( \App\Settings::where('name', 'stop')->exists() ) {
+            return view('error', ['error' => 'Игра остановлена или еще не началась']);
         }
         $command_id = $request->input('command_id');
         $past_stations = CommandsStations::where('id_com_stat', $command_id)->count();
@@ -26,7 +23,8 @@ class PlayersController extends Controller
         $curst = $past_stations + 1;
 
         if($curst > Stations::count()){
-            $current_station = TableRaz::where('team_id',$command_id)->value('COL '.($curst-1));
+            // $current_station = TableRaz::where('team_id',$command_id)->value('COL '.($curst-1));
+            return view('gameover');
         }else {
             $current_station = TableRaz::where('team_id',$command_id)->value('COL '.$curst);
         }
