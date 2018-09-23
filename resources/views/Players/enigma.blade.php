@@ -4,11 +4,11 @@
     <h1>Загадка № {{$id}}</h1>
     <br><br>
     <h2>
-        @if( {{asset("images/riddles/$image")}} )
+        <?php if( $image != '' && file_exists( public_path() . '/images/riddles/' . $image ) ) : ?>
             <img height='400px' src='{{asset("images/riddles/$image")}}'>
-        @else
+        <?php else : ?>
             <img height='400px' src='{{asset("images/no-img.png")}}'>
-        @endif
+        <?php endif; ?>
         <br>
         {{$text}}
     </h2>

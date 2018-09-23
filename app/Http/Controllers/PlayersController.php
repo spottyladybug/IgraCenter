@@ -23,8 +23,8 @@ class PlayersController extends Controller
         $curst = $past_stations + 1;
 
         if($curst > Stations::count()){
-            // $current_station = TableRaz::where('team_id',$command_id)->value('COL '.($curst-1));
-            return view('gameover');
+            $current_station = TableRaz::where('team_id',$command_id)->value('COL '.($curst-1));
+            // return view('gameover');
         }else {
             $current_station = TableRaz::where('team_id',$command_id)->value('COL '.$curst);
         }
